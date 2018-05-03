@@ -11,7 +11,7 @@ import org.json.simple.parser.JSONParser
 import org.json.simple.parser.ParseException
 
 
-class OrderRespository(mContext: Context) : OrderRepositoryI {
+class OrderRespositoryImpl(mContext: Context) : OrderRepository {
     private val cTAG = "ORDER_REPOSITORY"
 
     // Endpoint for API is here for brevity
@@ -27,9 +27,9 @@ class OrderRespository(mContext: Context) : OrderRepositoryI {
     }
 
 
-    fun retreiveOrderProvince () {
+    override fun retreiveOrderProvince () {
         // attach listeners to the request
-        val ordersRequest = StringRequest(Request.Method.GET, cENDPOINT,
+        val request = StringRequest(Request.Method.GET, cENDPOINT,
                 Response.Listener<String> {
                     // calls the method to parse the JSON response
                     response -> parseJSON(response)
@@ -37,9 +37,11 @@ class OrderRespository(mContext: Context) : OrderRepositoryI {
                 Response.ErrorListener {
                     error ->  Log.d(cTAG, error.message)
                 })
+        // adds the request to the queue to be excecuted
+        reqQueue.add(request)
     }
 
-    fun parseJSON(responseText: String) {
+    private fun parseJSON(responseText: String) {
         try {
             Log.d(cTAG, responseText)
             var jsonObject = parser.parse(responseText)
