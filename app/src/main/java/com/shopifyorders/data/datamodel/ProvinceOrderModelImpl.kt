@@ -7,7 +7,7 @@ class ProvinceOrderModelImpl(
         var provinceOrders: List<Order>
     ) : ProvinceOrderModel {
 
-    override fun getLatestOrder() : Order{
+    override fun getLatestOrder() : Order {
         // initialize the refences to be compares
         var latestOrder: Order = provinceOrders[0]
         var latestDate: Date = latestOrder.getTime()

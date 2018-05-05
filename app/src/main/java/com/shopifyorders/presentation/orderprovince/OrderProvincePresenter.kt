@@ -12,8 +12,8 @@ class OrderProvincePresenter(val view: Contract.View) : Contract.Presenter{
         orderRepo.retreiveOrderProvince(this)
     }
 
-    override fun receiveOrders(order: Order) {
-        Log.d(cTAG, order.toString())
+    override fun receiveOrders(orders: List<Order>) {
+        Log.d(cTAG, orders.toString())
     }
 
 }

@@ -7,6 +7,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.shopifyorders.data.datamodel.Order
 import com.shopifyorders.data.datamodel.OrderImpl
 import com.shopifyorders.data.datamodel.ProvinceOrderModelImpl
 import com.shopifyorders.presentation.orderprovince.OrderProvincePresenter
@@ -16,6 +17,7 @@ import org.json.simple.parser.JSONParser
 import org.json.simple.parser.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class OrderRespositoryImpl(mContext: Context) : OrderRepository {
@@ -51,22 +53,30 @@ class OrderRespositoryImpl(mContext: Context) : OrderRepository {
 
             // creates an iterator for the orders using its keys
             val orderIterator = ordersArray.iterator()
+            var orderList = ArrayList<Order> ()
 
             while (orderIterator.hasNext()) {
                 val order = orderIterator.next() as JSONObject
-                Log.d(cTAG, " ORDER : " + order.toString())
 
                 val productID = order.get("id").toString()
                 val created = order.get("created_at").toString()
                 val createdDate = stringToDate.parse(created.substring(0, 16))
 
-                // send each order to the presenter as they get parsed
-                presenter.receiveOrders(
-                    OrderImpl(productID, createdDate)
-                )
+                var province_code = ""
+                var province = order.get("billing_address")
+                if (province != null) {
+                    province_code = (province as JSONObject).get("province_code").toString()
+                }
+
+                Log.d(cTAG,
+                        "product = " + productID
+                        + ", date = " + createdDate.toString()
+                        + ", province code = " + province_code )
+
+                orderList.add(OrderImpl(productID, province_code, createdDate))
             }
-
-
+            // send all the orders order to the presenter to get parsed
+            presenter.receiveOrders(orderList)
 
         }
         catch (e: ParseException) {

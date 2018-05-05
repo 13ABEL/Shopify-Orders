@@ -4,12 +4,14 @@ import java.util.*
 
 class OrderImpl(
         val orderID:String,
+        val province: String,
         val orderDate:Date
     ) : Order {
 
 
     override fun getTime(): Date {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return this.orderDate
     }
+
 
 }
