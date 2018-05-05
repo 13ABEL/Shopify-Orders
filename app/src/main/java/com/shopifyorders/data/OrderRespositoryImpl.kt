@@ -7,8 +7,15 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.shopifyorders.data.datamodel.OrderImpl
+import com.shopifyorders.data.datamodel.ProvinceOrderModelImpl
+import com.shopifyorders.presentation.orderprovince.OrderProvincePresenter
+import org.json.simple.JSONArray
+import org.json.simple.JSONObject
 import org.json.simple.parser.JSONParser
 import org.json.simple.parser.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class OrderRespositoryImpl(mContext: Context) : OrderRepository {
@@ -17,34 +24,50 @@ class OrderRespositoryImpl(mContext: Context) : OrderRepository {
     // Endpoint for API is here for brevity
     private val cENDPOINT = "https://shopicruit.myshopify.com/admin/orders.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
 
-    private var reqQueue: RequestQueue
-    private val parser: JSONParser
+    private val reqQueue = Volley.newRequestQueue(mContext)
+    private val jsonParser: JSONParser = JSONParser()
 
-    init {
-        // initialize the Volley queue
-        reqQueue = Volley.newRequestQueue(mContext)
-        parser = JSONParser()
-    }
-
-
-    override fun retreiveOrderProvince () {
+    override fun retreiveOrderProvince (orderProvincePresenter : OrderProvincePresenter) {
         // attach listeners to the request
         val request = StringRequest(Request.Method.GET, cENDPOINT,
                 Response.Listener<String> {
                     // calls the method to parse the JSON response
-                    response -> parseJSON(response)
+                    response -> val list = parseJSON(response, orderProvincePresenter)
                 },
                 Response.ErrorListener {
                     error ->  Log.d(cTAG, error.message)
                 })
-        // adds the request to the queue to be excecuted
+        // adds the request to the queue to be executed
         reqQueue.add(request)
     }
 
-    private fun parseJSON(responseText: String) {
+
+    private fun parseJSON(responseText: String, presenter: OrderProvincePresenter) {
+        val stringToDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm")
         try {
             Log.d(cTAG, responseText)
-            var jsonObject = parser.parse(responseText)
+            val responseObject = jsonParser.parse(responseText) as JSONObject
+            val ordersArray = responseObject.get("orders") as JSONArray
+
+            // creates an iterator for the orders using its keys
+            val orderIterator = ordersArray.iterator()
+
+            while (orderIterator.hasNext()) {
+                val order = orderIterator.next() as JSONObject
+                Log.d(cTAG, " ORDER : " + order.toString())
+
+                val productID = order.get("id").toString()
+                val created = order.get("created_at").toString()
+                val createdDate = stringToDate.parse(created.substring(0, 16))
+
+                // send each order to the presenter as they get parsed
+                presenter.receiveOrders(
+                    OrderImpl(productID, createdDate)
+                )
+            }
+
+
+
         }
         catch (e: ParseException) {
             Log.d(cTAG, e.message)

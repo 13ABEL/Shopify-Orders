@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="province_order_item_height">60dp</dimen>
+    <dimen name="province_order_item_margin">8dp</dimen>
+
 </resources>

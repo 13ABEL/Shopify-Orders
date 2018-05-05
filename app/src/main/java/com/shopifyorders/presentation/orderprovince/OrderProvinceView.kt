@@ -2,12 +2,20 @@ package com.shopifyorders.presentation.orderprovince
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.shopifyorders.R
 import com.shopifyorders.data.OrderRepository
 import com.shopifyorders.data.OrderRespositoryImpl
+import com.shopifyorders.data.datamodel.Order
+import com.shopifyorders.data.datamodel.ProvinceOrderModel
+import com.shopifyorders.data.datamodel.ProvinceOrderModelImpl
+import com.shopifyorders.presentation.adapters.ProvinceOrderAdapter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class OrderProvinceView() : Contract.View, Fragment() {
     val presenter : Contract.Presenter = OrderProvincePresenter(this)
@@ -22,7 +30,27 @@ class OrderProvinceView() : Contract.View, Fragment() {
         val orderRepo : OrderRepository = OrderRespositoryImpl(rootview.context)
         presenter.retrieveOrders(orderRepo)
 
+        // initialize the recycler view reference and layout manager
+        val recyclerView = rootview.findViewById<RecyclerView>(R.id.province_orders_recyclerview)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.setHasFixedSize(true)
+
+        // Temporary testing only
+        var ordersList = ArrayList<ProvinceOrderModel>()
+        ordersList.add(ProvinceOrderModelImpl("test", ArrayList<Order>()))
+
+        // tells presenter to fetch the orders
+        presenter.retrieveOrders(orderRepo)
+
+        // attach the adapter to the list
+        val provinceOrderAdapter = ProvinceOrderAdapter(context, ordersList)
+        recyclerView.adapter = provinceOrderAdapter
+
         return rootview
+    }
+
+    override fun displayOrders(provinceOrders: List<ProvinceOrderModel>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }
