@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/province_order_item_height"
     android:layout_marginTop="@dimen/province_order_item_margin_vert"
-    android:layout_marginBottom="@dimen/province_order_item_margin_vert"
-    android:layout_marginStart="@dimen/province_order_item_margin_hor"
-    android:layout_marginEnd="@dimen/province_order_item_margin_hor">
+    android:layout_marginStart="@dimen/province_order_item_margin_hor">
 
 
 <RelativeLayout
@@ -28,12 +26,14 @@
                 android:textSize="@dimen/province_order_title_size"
                 android:letterSpacing="@dimen/letter_spacing"
                 android:textStyle="bold"
+                android:gravity="center"
                 android:textAllCaps="true"/>
 
             <TextView
                 android:id="@+id/province_order_item_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_below="@+id/province_order_item_province_name"/>
     
             <TextView

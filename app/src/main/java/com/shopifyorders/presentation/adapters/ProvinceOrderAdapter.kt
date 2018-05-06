@@ -45,9 +45,6 @@ class ProvinceOrderAdapter(var context: Context?)
         //holder.recent.text = currentProvince.getName()
     }
 
-
-
-
     override fun getItemCount(): Int {
         return provinceList.size
     }

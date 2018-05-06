@@ -32,7 +32,8 @@ class OrderProvinceView() : Contract.View, Fragment() {
 
         // initialize the recycler view reference and layout manager
         val recyclerView = rootview.findViewById<RecyclerView>(R.id.province_orders_recyclerview)
-        recyclerView.layoutManager = GridLayoutManager(context, 1)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
+
         recyclerView.setHasFixedSize(true)
 
         // tells presenter to fetch the orders

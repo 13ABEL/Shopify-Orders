@@ -9,14 +9,12 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.shopifyorders.data.datamodel.Order
 import com.shopifyorders.data.datamodel.OrderImpl
-import com.shopifyorders.data.datamodel.ProvinceOrderModelImpl
 import com.shopifyorders.presentation.orderprovince.OrderProvincePresenter
 import org.json.simple.JSONArray
 import org.json.simple.JSONObject
 import org.json.simple.parser.JSONParser
 import org.json.simple.parser.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 
