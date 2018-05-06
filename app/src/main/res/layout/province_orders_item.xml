@@ -3,12 +3,48 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/province_order_item_height"
-    android:layout_marginTop="@dimen/province_order_item_margin"
-    android:layout_marginStart="@dimen/province_order_item_margin">
+    android:layout_marginTop="@dimen/province_order_item_margin_vert"
+    android:layout_marginBottom="@dimen/province_order_item_margin_vert"
+    android:layout_marginStart="@dimen/province_order_item_margin_hor"
+    android:layout_marginEnd="@dimen/province_order_item_margin_hor">
 
-    <TextView
-        android:id="@+id/province_order_item_province_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/province_order_padding">
+
+        <TextView
+            android:id="@+id/province_order_item_recent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"/>
+
+
+            <TextView
+                android:id="@+id/province_order_item_province_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/province_order_title_size"
+                android:letterSpacing="@dimen/letter_spacing"
+                android:textStyle="bold"
+                android:textAllCaps="true"/>
+
+            <TextView
+                android:id="@+id/province_order_item_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/province_order_item_province_name"/>
+    
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/province_order_item_total"
+                android:layout_below="@id/province_order_item_province_name"
+                android:layout_marginStart="@dimen/province_order_order_margin"
+                android:text="@string/order"/>
+
+
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

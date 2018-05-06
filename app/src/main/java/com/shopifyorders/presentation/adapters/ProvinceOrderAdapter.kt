@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.shopifyorders.R
 import com.shopifyorders.data.datamodel.ProvinceOrderModel
 import kotlinx.android.synthetic.main.province_orders_item.view.*
@@ -16,7 +17,9 @@ class ProvinceOrderAdapter(var context: Context?)
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder (itemView) {
         // initializes the references to the layout
-        val province = itemView.province_order_item_province_name
+        val province = itemView.province_order_item_province_name as TextView
+        val total = itemView.province_order_item_total as TextView
+        val recent = itemView.province_order_item_recent as TextView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -27,10 +30,23 @@ class ProvinceOrderAdapter(var context: Context?)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        // replace the info held in the viewholder
-        (holder as ViewHolder).province.text = "test"
+    private fun getItem(position: Int) : ProvinceOrderModel {
+        return this.provinceList[position]
     }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        // get the item at the position
+        val currentProvince = getItem(position)
+
+        // replace the info held in the viewholder
+        val holder = (holder as ViewHolder)
+        holder.province.text = currentProvince.getName()
+        holder.total.text = currentProvince.getTotal().toString()
+        //holder.recent.text = currentProvince.getName()
+    }
+
+
+
 
     override fun getItemCount(): Int {
         return provinceList.size

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="province_order_item_height">60dp</dimen>
-    <dimen name="province_order_item_margin">8dp</dimen>
 
+    <dimen name="letter_spacing">0.15</dimen>
+
+
+    <dimen name="province_order_item_height">80dp</dimen>
+    <dimen name="province_order_item_margin_hor">8dp</dimen>
+    <dimen name="province_order_item_margin_vert">4dp</dimen>
+
+
+    <dimen name="province_order_padding">14dp</dimen>
+    <dimen name="province_order_title_size">18dp</dimen>
+
+    <dimen name="province_order_order_margin">4dp</dimen>
 </resources>

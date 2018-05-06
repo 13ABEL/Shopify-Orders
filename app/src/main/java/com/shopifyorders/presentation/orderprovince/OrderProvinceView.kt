@@ -32,7 +32,7 @@ class OrderProvinceView() : Contract.View, Fragment() {
 
         // initialize the recycler view reference and layout manager
         val recyclerView = rootview.findViewById<RecyclerView>(R.id.province_orders_recyclerview)
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.layoutManager = GridLayoutManager(context, 1)
         recyclerView.setHasFixedSize(true)
 
         // tells presenter to fetch the orders
@@ -44,6 +44,15 @@ class OrderProvinceView() : Contract.View, Fragment() {
         return rootview
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        activity!!.title = "Orders by Province"
+    }
+
+    /**
+     * Displays province orders from a list
+     */
     override fun displayProvinceOrders(provinceOrders: List<ProvinceOrderModel>) {
         // sends the items to the adapter to be displayed
         provinceOrderAdapter.setList(provinceOrders)

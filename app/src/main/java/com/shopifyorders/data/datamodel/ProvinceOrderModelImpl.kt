@@ -7,12 +7,20 @@ class ProvinceOrderModelImpl(
         var provinceName : String
     ) : ProvinceOrderModel {
 
+    var provinceOrders : MutableList<Order> = ArrayList()
 
-    override fun addOrder(newOrder: Order) {
-
+    override fun getName(): String {
+        return this.provinceName
     }
 
-    val provinceOrders = ArrayList<Order>()
+    override fun addOrder(newOrder: Order) {
+        this.provinceOrders.add(newOrder)
+    }
+
+    override fun getTotal(): Int {
+        return this.provinceOrders.size
+    }
+
 
     override fun getLatestOrder() : Order {
         // initialize the refences to be compares

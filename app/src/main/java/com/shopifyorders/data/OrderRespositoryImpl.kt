@@ -63,9 +63,9 @@ class OrderRespositoryImpl(mContext: Context) : OrderRepository {
                 val createdDate = stringToDate.parse(created.substring(0, 16))
 
                 var provinceCode = ""
-                var province = order.get("billing_address")
+                val province = order.get("shipping_address")
                 if (province != null) {
-                    provinceCode = (province as JSONObject).get("province_code").toString()
+                    provinceCode = (province as JSONObject).get("province").toString()
                 }
 
                 Log.d(cTAG,
