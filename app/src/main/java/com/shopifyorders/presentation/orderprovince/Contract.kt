@@ -6,7 +6,7 @@ import com.shopifyorders.data.datamodel.ProvinceOrderModel
 
 interface Contract {
     interface View {
-        fun displayOrders(provinceOrders: List<ProvinceOrderModel>)
+        fun displayProvinceOrders(provinceOrders: List<ProvinceOrderModel>)
     }
 
     interface Presenter {

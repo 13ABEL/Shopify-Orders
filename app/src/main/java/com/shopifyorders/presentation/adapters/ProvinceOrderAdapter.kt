@@ -9,8 +9,10 @@ import com.shopifyorders.R
 import com.shopifyorders.data.datamodel.ProvinceOrderModel
 import kotlinx.android.synthetic.main.province_orders_item.view.*
 
-class ProvinceOrderAdapter(var context: Context?, var provinceList: List<ProvinceOrderModel> )
+class ProvinceOrderAdapter(var context: Context?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder> () {
+
+    var provinceList : List<ProvinceOrderModel> = ArrayList()
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder (itemView) {
         // initializes the references to the layout
@@ -32,5 +34,9 @@ class ProvinceOrderAdapter(var context: Context?, var provinceList: List<Provinc
 
     override fun getItemCount(): Int {
         return provinceList.size
+    }
+
+    fun setList(provinceOrders : List<ProvinceOrderModel>) {
+        this.provinceList = provinceOrders
     }
 }

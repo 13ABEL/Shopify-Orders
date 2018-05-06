@@ -62,18 +62,18 @@ class OrderRespositoryImpl(mContext: Context) : OrderRepository {
                 val created = order.get("created_at").toString()
                 val createdDate = stringToDate.parse(created.substring(0, 16))
 
-                var province_code = ""
+                var provinceCode = ""
                 var province = order.get("billing_address")
                 if (province != null) {
-                    province_code = (province as JSONObject).get("province_code").toString()
+                    provinceCode = (province as JSONObject).get("province_code").toString()
                 }
 
                 Log.d(cTAG,
                         "product = " + productID
                         + ", date = " + createdDate.toString()
-                        + ", province code = " + province_code )
+                        + ", province code = " + provinceCode )
 
-                orderList.add(OrderImpl(productID, province_code, createdDate))
+                orderList.add(OrderImpl(productID, provinceCode, createdDate))
             }
             // send all the orders order to the presenter to get parsed
             presenter.receiveOrders(orderList)

@@ -19,7 +19,7 @@ import kotlin.collections.ArrayList
 
 class OrderProvinceView() : Contract.View, Fragment() {
     val presenter : Contract.Presenter = OrderProvincePresenter(this)
-
+    var provinceOrderAdapter = ProvinceOrderAdapter(context)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -35,22 +35,19 @@ class OrderProvinceView() : Contract.View, Fragment() {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.setHasFixedSize(true)
 
-        // Temporary testing only
-        var ordersList = ArrayList<ProvinceOrderModel>()
-        ordersList.add(ProvinceOrderModelImpl("test", ArrayList<Order>()))
-
         // tells presenter to fetch the orders
         presenter.retrieveOrders(orderRepo)
 
         // attach the adapter to the list
-        val provinceOrderAdapter = ProvinceOrderAdapter(context, ordersList)
         recyclerView.adapter = provinceOrderAdapter
 
         return rootview
     }
 
-    override fun displayOrders(provinceOrders: List<ProvinceOrderModel>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun displayProvinceOrders(provinceOrders: List<ProvinceOrderModel>) {
+        // sends the items to the adapter to be displayed
+        provinceOrderAdapter.setList(provinceOrders)
+        provinceOrderAdapter.notifyDataSetChanged()
     }
 
 }

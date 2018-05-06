@@ -1,11 +1,18 @@
 package com.shopifyorders.data.datamodel
 
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ProvinceOrderModelImpl(
-        var provinceName : String,
-        var provinceOrders: List<Order>
+        var provinceName : String
     ) : ProvinceOrderModel {
+
+
+    override fun addOrder(newOrder: Order) {
+
+    }
+
+    val provinceOrders = ArrayList<Order>()
 
     override fun getLatestOrder() : Order {
         // initialize the refences to be compares
