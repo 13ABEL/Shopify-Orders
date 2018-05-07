@@ -10,12 +10,8 @@ import android.view.ViewGroup
 import com.shopifyorders.R
 import com.shopifyorders.data.OrderRepository
 import com.shopifyorders.data.OrderRespositoryImpl
-import com.shopifyorders.data.datamodel.Order
 import com.shopifyorders.data.datamodel.ProvinceOrderModel
-import com.shopifyorders.data.datamodel.ProvinceOrderModelImpl
 import com.shopifyorders.presentation.adapters.ProvinceOrderAdapter
-import java.util.*
-import kotlin.collections.ArrayList
 
 class OrderProvinceView() : Contract.View, Fragment() {
     val presenter : Contract.Presenter = OrderProvincePresenter(this)

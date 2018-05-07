@@ -8,4 +8,9 @@
         android:id="@+id/open_province_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/open_year_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

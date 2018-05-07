@@ -26,21 +26,21 @@ class ProvinceOrderModelImpl(
         return this.provinceOrders.size
     }
 
-    override fun getLatestOrder() : String {
+    override fun getLatestOrderInfo() : String {
         var currentTime : Long = Date().time
         var differenceString = ""
 
         // converts latest order to days, hours, or minutes
         if (latestOrder != null) {
-            var difference = (currentTime - latestOrder!!.getDate().time)/1000
+            val difference = (currentTime - latestOrder!!.getDate().time)/1000
             if (difference < 60) {
-                differenceString =  (difference/60).toString() +  " minutes ago"
+                differenceString = (difference/60).toString() + " minutes ago"
             }
             else if (difference < 60*60) {
-                differenceString =  (difference/60/60).toString() +  " hours ago"
+                differenceString = (difference/60/60).toString() + " hours ago"
             }
             else {
-                differenceString =  (difference/60/60/24).toString() +  " days ago"
+                differenceString = (difference/60/60/24).toString() + " days ago"
             }
         }
 

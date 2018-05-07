@@ -4,12 +4,14 @@
     <dimen name="letter_spacing">0.1</dimen>
 
     <!-- for province order item -->
-    <dimen name="province_order_item_height">100dp</dimen>
+    <dimen name="province_order_item_height">104dp</dimen>
     <dimen name="province_order_item_margin_hor">8dp</dimen>
     <dimen name="province_order_item_margin_vert">8dp</dimen>
 
     <dimen name="province_order_padding">14dp</dimen>
     <dimen name="province_order_title_size">16dp</dimen>
+    <dimen name="province_order_title_margin_bottom">14dp</dimen>
+
 
     <dimen name="province_order_order_margin">4dp</dimen>
 
