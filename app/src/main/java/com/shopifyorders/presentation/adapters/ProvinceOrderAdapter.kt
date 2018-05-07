@@ -9,6 +9,8 @@ import android.widget.TextView
 import com.shopifyorders.R
 import com.shopifyorders.data.datamodel.ProvinceOrderModel
 import kotlinx.android.synthetic.main.province_orders_item.view.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 class ProvinceOrderAdapter(var context: Context?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder> () {
@@ -42,7 +44,7 @@ class ProvinceOrderAdapter(var context: Context?)
         val holder = (holder as ViewHolder)
         holder.province.text = currentProvince.getName()
         holder.total.text = currentProvince.getTotal().toString()
-        //holder.recent.text = currentProvince.getName()
+        holder.recent.text = currentProvince.getLatestOrder()
     }
 
     override fun getItemCount(): Int {

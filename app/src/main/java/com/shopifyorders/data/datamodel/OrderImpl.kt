@@ -8,7 +8,7 @@ class OrderImpl(
         val orderDate:Date
     ) : Order {
 
-    override fun getTime(): Date {
+    override fun getDate(): Date {
         return this.orderDate
     }
 

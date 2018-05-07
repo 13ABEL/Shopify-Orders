@@ -12,6 +12,8 @@ import com.shopifyorders.presentation.orderprovince.OrderProvinceView
 import kotlinx.android.synthetic.main.select_category.view.*
 
 class SelectCategoryView : Fragment() {
+    val FRAGMENT_TITLE = "Orders"
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -30,5 +32,13 @@ class SelectCategoryView : Fragment() {
         )
 
         return rootview
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        if (activity != null) {
+            activity!!.title = FRAGMENT_TITLE
+        }
     }
 }

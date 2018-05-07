@@ -7,7 +7,8 @@ class ProvinceOrderModelImpl(
         var provinceName : String
     ) : ProvinceOrderModel {
 
-    var provinceOrders : MutableList<Order> = ArrayList()
+    private var provinceOrders : MutableList<Order> = ArrayList()
+    private var latestOrder : Order? = null
 
     override fun getName(): String {
         return this.provinceName
@@ -15,28 +16,35 @@ class ProvinceOrderModelImpl(
 
     override fun addOrder(newOrder: Order) {
         this.provinceOrders.add(newOrder)
+
+        if (latestOrder == null || newOrder.getDate().before(latestOrder!!.getDate())) {
+            latestOrder = newOrder
+        }
     }
 
     override fun getTotal(): Int {
         return this.provinceOrders.size
     }
 
+    override fun getLatestOrder() : String {
+        var currentTime : Long = Date().time
+        var differenceString = ""
 
-    override fun getLatestOrder() : Order {
-        // initialize the refences to be compares
-        var latestOrder: Order = provinceOrders[0]
-        var latestDate: Date = latestOrder.getTime()
-
-        // TODO wrap in async task and update view when the latest order is determined
-        // iterate through all the orders
-        for (order in provinceOrders) {
-            // update the latest order if the current one is newer
-            if (order.getTime() > latestDate) {
-                latestOrder = order
-                latestDate = order.getTime()
+        // converts latest order to days, hours, or minutes
+        if (latestOrder != null) {
+            var difference = (currentTime - latestOrder!!.getDate().time)/1000
+            if (difference < 60) {
+                differenceString =  (difference/60).toString() +  " minutes ago"
+            }
+            else if (difference < 60*60) {
+                differenceString =  (difference/60/60).toString() +  " hours ago"
+            }
+            else {
+                differenceString =  (difference/60/60/24).toString() +  " days ago"
             }
         }
-        return latestOrder
+
+        return differenceString
     }
 
 }
