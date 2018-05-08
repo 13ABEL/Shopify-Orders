@@ -3,7 +3,7 @@ package com.shopifyorders.domain
 import com.shopifyorders.domain.Order
 import java.util.*
 
-class OrderImpl (
+open class OrderImpl (
         val orderID: String,
         val province: String,
         val orderDate:Date
