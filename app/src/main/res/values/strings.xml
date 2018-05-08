@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Shopify Orders</string>
     <string name="order"> orders </string>
+
+
+    <string name="open_orders_by_province"> Open Orders By Province </string>
+    <string name="open_orders_by_year"> Open Orders By Years </string>
 </resources>

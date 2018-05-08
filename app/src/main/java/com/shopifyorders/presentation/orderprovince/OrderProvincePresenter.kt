@@ -2,7 +2,7 @@ package com.shopifyorders.presentation.orderprovince
 
 import android.util.Log
 import com.shopifyorders.data.OrderRepository
-import com.shopifyorders.data.datamodel.Order
+import com.shopifyorders.domain.Order
 import com.shopifyorders.data.datamodel.ProvinceOrderModel
 import com.shopifyorders.data.datamodel.ProvinceOrderModelImpl
 import java.util.*

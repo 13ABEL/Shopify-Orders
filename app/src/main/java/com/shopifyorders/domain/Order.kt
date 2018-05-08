@@ -1,5 +1,8 @@
 package com.shopifyorders.domain
 
-interface Order {
+import java.util.*
 
+interface Order {
+    fun getDate() : Date
+    fun getProvinceCode() : String
 }

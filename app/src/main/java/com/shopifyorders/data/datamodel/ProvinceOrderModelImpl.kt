@@ -1,5 +1,6 @@
 package com.shopifyorders.data.datamodel
 
+import com.shopifyorders.domain.Order
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -17,7 +18,7 @@ class ProvinceOrderModelImpl(
     override fun addOrder(newOrder: Order) {
         this.provinceOrders.add(newOrder)
 
-        if (latestOrder == null || newOrder.getDate().before(latestOrder!!.getDate())) {
+        if (latestOrder == null || newOrder.getDate().after(latestOrder!!.getDate())) {
             latestOrder = newOrder
         }
     }

@@ -3,6 +3,9 @@
 
     <dimen name="letter_spacing">0.1</dimen>
 
+
+    <dimen name="loading_icon_height">100dp</dimen>
+
     <!-- for province order item -->
     <dimen name="province_order_item_height">104dp</dimen>
     <dimen name="province_order_item_margin_hor">8dp</dimen>

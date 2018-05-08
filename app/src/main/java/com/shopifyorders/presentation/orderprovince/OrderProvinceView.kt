@@ -1,5 +1,6 @@
 package com.shopifyorders.presentation.orderprovince
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import com.shopifyorders.R
 import com.shopifyorders.data.OrderRepository
 import com.shopifyorders.data.OrderRespositoryImpl
@@ -54,6 +56,12 @@ class OrderProvinceView() : Contract.View, Fragment() {
         // sends the items to the adapter to be displayed
         provinceOrderAdapter.setList(provinceOrders)
         provinceOrderAdapter.notifyDataSetChanged()
+
+        // hides the progress bar and reveals the recvclerview once the data is loaded
+        view!!.findViewById<ProgressBar>(R.id.province_orders_progressbar)
+                .visibility = ProgressBar.GONE
+        view!!.findViewById<RecyclerView>(R.id.province_orders_recyclerview)
+                .visibility = RecyclerView.VISIBLE
     }
 
 }

@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    
+    <android.support.constraint.Guideline
+        android:id="@+id/province_orders_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/province_orders_progressbar"
+        android:layout_width="@dimen/loading_icon_height"
+        android:layout_height="@dimen/loading_icon_height"
+        android:layout_centerInParent="true"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/province_orders_recyclerview"
@@ -10,6 +21,8 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingEnd="@dimen/province_order_item_margin_hor"
-        android:paddingBottom="@dimen/province_order_item_margin_vert"/>
+        android:paddingBottom="@dimen/province_order_item_margin_vert"
+        android:visibility="gone">
+    </android.support.v7.widget.RecyclerView>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
