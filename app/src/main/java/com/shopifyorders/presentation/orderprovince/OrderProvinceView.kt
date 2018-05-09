@@ -14,6 +14,7 @@ import com.shopifyorders.data.OrderRepository
 import com.shopifyorders.data.OrderRespositoryImpl
 import com.shopifyorders.data.datamodel.ProvinceOrderModel
 import com.shopifyorders.presentation.adapters.ProvinceOrderAdapter
+import kotlinx.android.synthetic.main.province_orders.view.*
 
 class OrderProvinceView() : Contract.View, Fragment() {
     val presenter : Contract.Presenter = OrderProvincePresenter(this)
@@ -29,13 +30,9 @@ class OrderProvinceView() : Contract.View, Fragment() {
         presenter.retrieveOrders(orderRepo)
 
         // initialize the recycler view reference and layout manager
-        val recyclerView = rootview.findViewById<RecyclerView>(R.id.province_orders_recyclerview)
+        val recyclerView = rootview.province_orders_recyclerview
         recyclerView.layoutManager = GridLayoutManager(context, 2)
-
         recyclerView.setHasFixedSize(true)
-
-        // tells presenter to fetch the orders
-        presenter.retrieveOrders(orderRepo)
 
         // attach the adapter to the list
         recyclerView.adapter = provinceOrderAdapter

@@ -2,30 +2,36 @@ package com.shopifyorders.presentation.orderyear
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.Toast
 import com.shopifyorders.R
-import com.shopifyorders.presentation.adapters.YearOrderTabAdapter
+import com.shopifyorders.data.OrderRespositoryImpl
+import com.shopifyorders.data.datamodel.YearOrderModel
+import com.shopifyorders.domain.Order
+import com.shopifyorders.presentation.adapters.OrderAdapter
+import com.shopifyorders.presentation.adapters.YearOrderAdapter
 import kotlinx.android.synthetic.main.year_orders.view.*
 
 class OrderYearView : Contract.View, Fragment() {
     val presenter : Contract.Presenter = OrderYearPresenter(this)
+    var yearOrderAdapter : YearOrderAdapter = YearOrderAdapter(context)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val rootview = inflater.inflate(R.layout.year_orders, container, false)
 
-        // retrieve the fragment manager to create a new tab adapter
-        var yearTabAdapter = YearOrderTabAdapter(this.childFragmentManager)
+        // inflates the recyclerview and attach the tab adapter to it
+        val recyclerView = rootview.year_orders_recyclerview
+        recyclerView.adapter = yearOrderAdapter
 
-        // inflates the viewpager and attach the tab adapter to it
-        var viewPager = rootview.order_by_year_viewpager
-        viewPager.adapter = yearTabAdapter
-
-        // inflates the tablayout and attach the viewpager to it
-        var tabLayout = rootview.order_by_year_tablayout
-        tabLayout.setupWithViewPager(viewPager)
+        // retrieves orders
+        presenter.retrieveOrders(OrderRespositoryImpl(this.context!!))
 
         return rootview
     }
@@ -36,6 +42,19 @@ class OrderYearView : Contract.View, Fragment() {
         if (activity != null) {
             activity!!.title = "Orders By Year"
         }
+    }
+
+    override fun displayOrders(orders: List<YearOrderModel>) {
+        yearOrderAdapter.setList(orders)
+        yearOrderAdapter.notifyDataSetChanged()
+
+        Toast.makeText(context, "REEE", Toast.LENGTH_SHORT).show()
+        // hides the progress bar and reveals the recvclerview once the data is loaded
+        view!!.findViewById<ProgressBar>(R.id.year_orders_progressbar)
+                .visibility = ProgressBar.GONE
+
+        view!!.findViewById<RecyclerView>(R.id.year_orders_recyclerview)
+                .visibility = RecyclerView.VISIBLE
     }
 
 

@@ -1,5 +1,9 @@
 package com.shopifyorders.data.datamodel
 
-interface YearOrderModel {
+import com.shopifyorders.domain.Order
 
+interface YearOrderModel {
+    fun getOrderYear() : Int
+    fun addOrder(newOrder: Order)
+    fun getOrders() : List <Order>
 }
