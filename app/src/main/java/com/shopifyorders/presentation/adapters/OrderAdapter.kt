@@ -14,8 +14,8 @@ class OrderAdapter : RecyclerView.Adapter <RecyclerView.ViewHolder> () {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // initialize the references to placeholders in the itme layout
-        val orderName : TextView = itemView.order_item_name
-        val orderDate : TextView = itemView.order_item_time
+        val orderName : TextView = itemView.year_order_item_name
+        val orderDate : TextView = itemView.year_order_item_time
         val orderPrice : TextView = itemView.order_item_price
         val orderQuantity : TextView = itemView.order_item_quantity
     }

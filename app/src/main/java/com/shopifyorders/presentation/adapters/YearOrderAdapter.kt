@@ -1,6 +1,7 @@
 package com.shopifyorders.presentation.adapters
 
 import android.content.Context
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,8 +18,11 @@ class YearOrderAdapter(var context: Context?)
     var yearList : List<YearOrderModel> = ArrayList()
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val year : TextView = itemView.order_item_time
-        val total : TextView = itemView.order_item_name
+        val year : TextView = itemView.year_order_item_time
+        val total : TextView = itemView.year_order_item_name
+
+        // get the reference to the recyclerview to create a new adapter for the nested orders
+        val ordersRV: RecyclerView = itemView.year_orders_horizontal_recyclerview
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YearOrderAdapter.ViewHolder {
@@ -33,9 +37,13 @@ class YearOrderAdapter(var context: Context?)
     }
 
     override fun onBindViewHolder(holder: YearOrderAdapter.ViewHolder, position: Int) {
-        val item = yearList.get(position)
+        val yearOrder = yearList.get(position)
+        holder.year.text = yearOrder.getOrderYear().toString()
 
-        holder.year.text = item.getOrderYear().toString()
+        // attach the adapter to the view
+        holder.ordersRV.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        holder.ordersRV.adapter = YearOrderOrdersAdapter(yearOrder.getOrders())
     }
 
     fun setList(yearOrders : List<YearOrderModel>) {

@@ -5,17 +5,17 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/order_item_name"
+        android:id="@+id/year_order_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/order_item_description"
+        android:id="@+id/year_order_item_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/order_item_time"
+        android:id="@+id/year_order_item_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
