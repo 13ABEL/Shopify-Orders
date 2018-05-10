@@ -1,5 +1,6 @@
 package com.shopifyorders.data.datamodel
 
+import android.os.Parcelable
 import com.shopifyorders.domain.Order
 import java.util.*
 import kotlin.collections.ArrayList

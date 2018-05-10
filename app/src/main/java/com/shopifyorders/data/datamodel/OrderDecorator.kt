@@ -1,23 +1,30 @@
-//package com.shopifyorders.data.datamodel.order
+//package com.shopifyorders.data.datamodel
 //
 //import android.os.Parcel
 //import android.os.Parcelable
-//import com.shopifyorders.data.datamodel.OrderDecorator
-//import com.shopifyorders.domain.Order
 //import com.shopifyorders.domain.OrderImpl
 //import java.text.SimpleDateFormat
+//import java.util.*
 //
-//class OrderMapper (order: Order) : Parcelable {
+///**
+// *  Decorator to add extended functionality to the the order impl without changing the order impl
+// *  class to cross domains and use android specific components
+// */
+//
+//class OrderDecorator () : OrderImpl(), Parcelable {
+//    constructor(dorderID: String, dprovince: String, dorderDate:Date) : this()
+//
 //    // formatter for the date
 //    val stringToDate =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm")
 //
-//    // map the order values to this parcelable object
-//    var orderID = ""
-//    var province = order.getProvinceCode()
-//    var orderDate = order.getDate()
+//    constructor(parcel: Parcel) : this () {
+//        val dataList = arrayOfNulls<String>(3)
+//        parcel.readStringArray(dataList)
 //
-//    fun getOrder() : Order {
-//        return OrderImpl(orderID, province, orderDate)
+//        // retreives values to be placed in the new unpacked object
+//        dorderID = dataList.get(0)!!
+//        dprovince = dataList.get(1)!!
+//        dorderDate = stringToDate.parse(dataList.get(2))!!
 //    }
 //
 //    override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -39,5 +46,4 @@
 //            return arrayOfNulls(size)
 //        }
 //    }
-//
 //}

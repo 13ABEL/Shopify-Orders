@@ -18,6 +18,12 @@
 
     <dimen name="province_order_order_margin">4dp</dimen>
 
+    <!-- for year order item -->
+    <dimen name="year_order_item_height">104dp</dimen>
+    <dimen name="year_order_item_margin_hor">8dp</dimen>
+    <dimen name="year_order_item_margin_vert">8dp</dimen>
+
+    <dimen name="year_order_item_reyclerview_height">80dp</dimen>
 
 
 </resources>

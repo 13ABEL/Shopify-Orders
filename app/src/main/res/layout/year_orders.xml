@@ -14,9 +14,9 @@
         android:id="@+id/year_orders_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
-
-    </android.support.v7.widget.RecyclerView>
+        android:clipToPadding="false"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/province_order_item_margin_vert"/>
 
 
 </RelativeLayout>

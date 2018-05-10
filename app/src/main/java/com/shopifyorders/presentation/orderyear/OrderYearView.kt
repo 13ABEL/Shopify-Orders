@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ class OrderYearView : Contract.View, Fragment() {
 
         // inflates the recyclerview and attach the tab adapter to it
         val recyclerView = rootview.year_orders_recyclerview
+        recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = yearOrderAdapter
 
         // retrieves orders
@@ -48,7 +50,6 @@ class OrderYearView : Contract.View, Fragment() {
         yearOrderAdapter.setList(orders)
         yearOrderAdapter.notifyDataSetChanged()
 
-        Toast.makeText(context, "REEE", Toast.LENGTH_SHORT).show()
         // hides the progress bar and reveals the recvclerview once the data is loaded
         view!!.findViewById<ProgressBar>(R.id.year_orders_progressbar)
                 .visibility = ProgressBar.GONE

@@ -11,6 +11,7 @@ class OrderYearPresenter (val view :Contract.View) : Contract.Presenter {
     val TAG = "ORDER_YEAR_PRESENTER"
     val yearOrderList = TreeMap<Int, YearOrderModel>()
 
+
     override fun retrieveOrders(orderRepo: OrderRepository) {
          orderRepo.retreiveOrderYear(this)
      }
@@ -22,16 +23,19 @@ class OrderYearPresenter (val view :Contract.View) : Contract.Presenter {
             // add the year to the set of years
             cal.time = order.getDate()
             val year = cal.get(Calendar.YEAR)
-            Log.d(TAG, "year = " + year)
 
-            // create a new year order model if one doesn't exist for the year
+
             if (yearOrderList.containsKey(year)){
                 yearOrderList.get(year)!!.addOrder(order)
             }
             else {
-                yearOrderList.put(year, YearOrderModelImpl(year))
+                // create a new year order model if one doesn't exist for the year
+                val newYearOrder = YearOrderModelImpl(year)
+                newYearOrder.addOrder(order)
+                yearOrderList.put(year, newYearOrder)
             }
         }
+        Log.d(TAG, yearOrderList.size.toString())
         view.displayOrders(yearOrderList.values.toList())
     }
 

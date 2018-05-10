@@ -3,11 +3,9 @@ package com.shopifyorders.domain
 import com.shopifyorders.domain.Order
 import java.util.*
 
-open class OrderImpl (
-        val orderID: String,
-        val province: String,
-        val orderDate:Date
-    ) : Order {
+open class OrderImpl (val orderID: String,
+                      val province: String,
+                      val orderDate: Date) : Order {
 
     override fun getDate(): Date {
         return this.orderDate
