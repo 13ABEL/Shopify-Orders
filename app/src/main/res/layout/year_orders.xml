@@ -17,6 +17,4 @@
         android:clipToPadding="false"
         android:visibility="gone"
         android:layout_marginBottom="@dimen/province_order_item_margin_vert"/>
-
-
 </RelativeLayout>

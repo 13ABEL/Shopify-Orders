@@ -9,37 +9,32 @@ import com.shopifyorders.R
 import com.shopifyorders.domain.Order
 import kotlinx.android.synthetic.main.order_item.view.*
 
-class OrderAdapter : RecyclerView.Adapter <RecyclerView.ViewHolder> () {
-    val orders : MutableList<Order> = ArrayList()
+class OrderAdapter (val orderList : List<Order>)
+    : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // initialize the references to placeholders in the itme layout
-        val orderName : TextView = itemView.year_order_item_name
-        val orderDate : TextView = itemView.year_order_item_time
-        val orderPrice : TextView = itemView.order_item_price
-        val orderQuantity : TextView = itemView.order_item_quantity
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder (itemView) {
+        val orderQuantity = itemView.order_item_quantity as TextView
+        val orderPrice = itemView.order_item_price as TextView
+        val orderTime = itemView.year_order_item_time as TextView
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
+    
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val rootview = LayoutInflater.from(parent.context)
                 .inflate(R.layout.order_item, parent, false)
 
-        // returns the a new viewholder created using this view
-        return ViewHolder(itemView)
+        return ViewHolder(rootview)
     }
-
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        // get the item at the position
-        val orderItem : Order = orders[position]
-
-        // bind the item's data to the view
-
-    }
-
 
     override fun getItemCount(): Int {
-        return orders.size
+        return orderList.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val currentOrder = orderList.get(position)
+        holder.orderQuantity.text = currentOrder.getProvinceCode()
+        holder.orderPrice.text = currentOrder.getProvinceCode()
+        holder.orderTime.text = currentOrder.getProvinceCode()
     }
 
 

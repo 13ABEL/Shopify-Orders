@@ -3,7 +3,6 @@ package com.shopifyorders.data.datamodel
 import com.shopifyorders.domain.Order
 
 class YearOrderModelImpl (val year: Int): YearOrderModel{
-
     val yearOrders : MutableList<Order> = ArrayList()
 
 
@@ -23,4 +22,9 @@ class YearOrderModelImpl (val year: Int): YearOrderModel{
         // returns top x number of orders
         return yearOrders.subList(0, numTop)
     }
+
+    override fun getTotal(): Int {
+        return yearOrders.size
+    }
+
 }

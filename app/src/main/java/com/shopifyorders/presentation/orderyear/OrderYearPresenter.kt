@@ -40,7 +40,7 @@ class OrderYearPresenter (val view :Contract.View) : Contract.Presenter {
     }
 
     override fun getYears(): List<Int> {
-        return yearOrderList.keys.reversed().toList()
+        return yearOrderList.keys.toList()
     }
 
     override fun getYearOrder(year: Int): YearOrderModel {
