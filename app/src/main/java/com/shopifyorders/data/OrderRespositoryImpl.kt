@@ -101,7 +101,7 @@ class OrderRespositoryImpl(mContext: Context) : OrderRepository {
                 val total = order.get("subtotal_price").toString().toDouble()
                 val currency = order.get("currency").toString()
 
-                var provinceCode = ""
+                var provinceCode = "other"
                 val province = order.get("shipping_address")
                 if (province != null) {
                     provinceCode = (province as JSONObject).get("province").toString()
@@ -112,6 +112,7 @@ class OrderRespositoryImpl(mContext: Context) : OrderRepository {
                         + ", date = " + createdDate.toString()
                         + ", province code = " + provinceCode )
 
+
                 orderList.add(OrderImpl(
                         productID,
                         provinceCode,
@@ -120,6 +121,7 @@ class OrderRespositoryImpl(mContext: Context) : OrderRepository {
                         total,
                         currency,
                         orderItems))
+
             }
         }
         catch (e: ParseException) {
