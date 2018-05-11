@@ -7,4 +7,14 @@ data class ItemImpl (
         val itemVariantName: String,
         val itemPrice: Double,
         val itemQuantity: Int
-    ) : Item
+    ) : Item {
+
+    override fun getName() : String{
+        return itemName.plus(" - " + itemVariantName)
+    }
+
+    override fun getQuantity() : Int {
+        return this.itemQuantity
+    }
+
+}

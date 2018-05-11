@@ -30,7 +30,7 @@
 
     <!-- for order items nested in the year -->
     <dimen name="year_order_item_reyclerview_height">140dp</dimen>
-    <dimen name="order_item_height">160dp</dimen>
+    <dimen name="order_item_height">170dp</dimen>
     <dimen name="order_item_width">130dp</dimen>
 
     <dimen name="order_item_margin_hor">10dp</dimen>
@@ -38,7 +38,7 @@
     <dimen name="order_item_padding">10dp</dimen>
 
     <dimen name="order_item_title">20dp</dimen>
-
+    <dimen name="order_item_items_height">100dp</dimen>
 
 
 

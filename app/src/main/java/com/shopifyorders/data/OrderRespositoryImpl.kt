@@ -76,20 +76,21 @@ class OrderRespositoryImpl(mContext: Context) : OrderRepository {
 
             while (orderIterator.hasNext()) {
                 val order = orderIterator.next() as JSONObject
-                val orderItems : List<Item> = ArrayList()
+                val orderItems : MutableList<Item> = ArrayList()
 
                 // retrieve the items ordered
                 val orderItemsIterator = (order.get("line_items") as JSONArray).iterator()
                 while (orderItemsIterator.hasNext()) {
                     val orderItem = orderItemsIterator.next() as JSONObject
 
-                    ItemImpl(
+                    orderItems.add(ItemImpl(
                             orderItem.get("id").toString(),
                             orderItem.get("title").toString(),
                             orderItem.get("variant_id").toString(),
                             orderItem.get("variant_title").toString(),
                             orderItem.get("price").toString().toDouble(),
                             orderItem.get("quantity").toString().toInt())
+                    )
                 }
 
                 // retrieve necessary data from json object

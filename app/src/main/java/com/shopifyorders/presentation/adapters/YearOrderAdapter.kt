@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.shopifyorders.R
 import com.shopifyorders.data.datamodel.YearOrderModel
+import com.shopifyorders.domain.Item
 import kotlinx.android.synthetic.main.year_orders_item.view.*
 
 class YearOrderAdapter(var context: Context?)
