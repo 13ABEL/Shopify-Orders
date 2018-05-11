@@ -1,6 +1,7 @@
 package com.shopifyorders.domain
 
 import com.shopifyorders.domain.Order
+import java.text.SimpleDateFormat
 import java.util.*
 
 open class OrderImpl (val orderID: String,
@@ -31,23 +32,8 @@ open class OrderImpl (val orderID: String,
         return this.currency
     }
 
-    override fun getLastModified(): String {
-        val currentTime : Long = Date().time
-        var differenceString = ""
-
-        // converts latest order to days, hours, or minutes
-        val difference = (currentTime - this.orderDate.time)/1000
-        if (difference < 60) {
-            differenceString = (difference/60).toString() + " minutes ago"
-        }
-        else if (difference < 60*60) {
-            differenceString = (difference/60/60).toString() + " hours ago"
-        }
-        else {
-            differenceString = (difference/60/60/24).toString() + " days ago"
-        }
-
-        return differenceString
+    override fun getLastModified(): Date {
+        return this.orderDate
     }
 
     /**

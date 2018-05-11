@@ -10,6 +10,7 @@ import com.shopifyorders.R
 import com.shopifyorders.domain.Item
 import com.shopifyorders.domain.Order
 import kotlinx.android.synthetic.main.order_item.view.*
+import java.text.SimpleDateFormat
 
 class OrderAdapter (val orderList : List<Order>)
     : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
@@ -45,6 +46,9 @@ class OrderAdapter (val orderList : List<Order>)
         if (orderItems.size <= 1) {
             // display the number and title of the single item
             val item = orderItems.get(0)
+            if (item.getQuantity() == 1) {
+
+            }
             ordersItemsRep.append(item.getQuantity().toString() + " " + item.getName())
 
         } else {
@@ -66,7 +70,8 @@ class OrderAdapter (val orderList : List<Order>)
         holder.orderPrice.text = currentOrder.getTotal().toString()
                 .plus(" " + currentOrder.getOrderCurrency())
 
-        holder.orderTimeLocation.text = currentOrder.getLastModified()
+        holder.orderTimeLocation.text = SimpleDateFormat("'At' yyyy/MM/dd")
+                .format(currentOrder.getLastModified())
                 .plus(" from " + currentOrder.getProvinceCode())
     }
 

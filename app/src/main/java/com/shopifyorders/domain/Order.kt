@@ -9,7 +9,7 @@ interface Order {
     fun getTotal() : Double
     fun getOrderCurrency() : String
 
-    fun getLastModified() : String
+    fun getLastModified() : Date
     fun getAuthorEmail() : String
 
     fun getOrderItems() : List<Item>

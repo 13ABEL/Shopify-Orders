@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="select_order_button_margin">20dp</dimen>
+
+    <dimen name="select_order_button_height">60dp</dimen>
+    <dimen name="select_order_button_width">240dp</dimen>
+
+
     <dimen name="letter_spacing">0.1</dimen>
-
-
     <dimen name="loading_icon_height">100dp</dimen>
 
     <!-- for province order item -->
