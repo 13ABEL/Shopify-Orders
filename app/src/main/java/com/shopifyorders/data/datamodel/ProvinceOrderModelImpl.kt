@@ -29,7 +29,7 @@ class ProvinceOrderModelImpl(
     }
 
     override fun getLatestOrderInfo() : String {
-        var currentTime : Long = Date().time
+        val currentTime : Long = Date().time
         var differenceString = ""
 
         // converts latest order to days, hours, or minutes

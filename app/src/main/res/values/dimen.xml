@@ -37,6 +37,8 @@
     <dimen name="order_item_margin_ver">10dp</dimen>
     <dimen name="order_item_padding">10dp</dimen>
 
+    <dimen name="order_item_title">20dp</dimen>
+
 
 
 

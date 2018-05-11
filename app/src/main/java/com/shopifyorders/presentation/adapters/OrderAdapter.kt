@@ -14,11 +14,15 @@ class OrderAdapter (val orderList : List<Order>)
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder (itemView) {
         val orderQuantity = itemView.order_item_quantity as TextView
+
+        val orderEmail = itemView.year_order_item_email as TextView
         val orderPrice = itemView.order_item_price as TextView
-        val orderTime = itemView.year_order_item_time as TextView
+
+        val orderProvince = itemView.year_order_item_province as TextView
+        val orderTime = itemView.year_order_item_date as TextView
     }
 
-    
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val rootview = LayoutInflater.from(parent.context)
                 .inflate(R.layout.order_item, parent, false)
@@ -32,9 +36,14 @@ class OrderAdapter (val orderList : List<Order>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentOrder = orderList.get(position)
-        holder.orderQuantity.text = currentOrder.getProvinceCode()
-        holder.orderPrice.text = currentOrder.getProvinceCode()
-        holder.orderTime.text = currentOrder.getProvinceCode()
+        holder.orderEmail.text = currentOrder.getAuthorEmail()
+
+        //holder.orderQuantity.text = currentOrder.getProvinceCode()
+        holder.orderPrice.text = currentOrder.getTotal().toString()
+                .plus(" " + currentOrder.getOrderCurrency())
+
+        holder.orderProvince.text = currentOrder.getProvinceCode()
+        holder.orderTime.text = currentOrder.getLastModified()
     }
 
 
